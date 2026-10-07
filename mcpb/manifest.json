@@ -1,0 +1,66 @@
+{
+  "manifest_version": "0.4",
+  "name": "sportapi-mcp",
+  "display_name": "SportAPI — sports odds and live scores",
+  "version": "0.1.0",
+  "description": "Live and prematch sports odds, scores, live statistics and match search from SportAPI. Demo data works without an API key.",
+  "long_description": "Ask your assistant for live matches, prematch lines, match markets and odds, scores and live statistics across football, basketball, tennis, esports and more. Without an API key the server answers with bundled demo data from the SportAPI documentation; add your key and personal base URL (issued by the SportAPI manager) for live data.",
+  "author": {
+    "name": "SportAPI",
+    "url": "https://sportapi.net"
+  },
+  "homepage": "https://sportapi.net",
+  "documentation": "https://sportapi.net/docs/sport-line/getting-started/quick-start.html",
+  "support": "https://t.me/sportapinet_bot?start=github_sportapi_mcp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SportApi-net/sportapi-mcp"
+  },
+  "icon": "icon.png",
+  "server": {
+    "type": "uv",
+    "entry_point": "src/server.py",
+    "mcp_config": {
+      "command": "uv",
+      "args": ["run", "--directory", "${__dirname}", "src/server.py"],
+      "env": {
+        "SPORTAPI_KEY": "${user_config.api_key}",
+        "SPORTAPI_BASE_URL": "${user_config.base_url}",
+        "SPORTAPI_LANGUAGE": "${user_config.language}"
+      }
+    }
+  },
+  "user_config": {
+    "api_key": {
+      "type": "string",
+      "title": "SportAPI key",
+      "description": "Sent in the Package header. Leave empty to use demo data.",
+      "sensitive": true,
+      "required": false,
+      "default": ""
+    },
+    "base_url": {
+      "type": "string",
+      "title": "Personal base URL",
+      "description": "Your SportAPI base URL, e.g. https://YOUR_API_DOMAIN. Leave empty to use demo data.",
+      "required": false,
+      "default": ""
+    },
+    "language": {
+      "type": "string",
+      "title": "Response language",
+      "description": "Language code enabled for your key (default: en).",
+      "required": false,
+      "default": "en"
+    }
+  },
+  "compatibility": {
+    "platforms": ["darwin", "linux", "win32"],
+    "runtimes": {
+      "python": ">=3.10"
+    }
+  },
+  "keywords": ["sports", "odds", "betting", "live scores", "esports", "sportsbook"],
+  "license": "MIT",
+  "privacy_policies": ["https://sportapi.net/confidentiality.html"]
+}

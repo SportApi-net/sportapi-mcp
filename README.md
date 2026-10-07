@@ -93,7 +93,9 @@ The `env` blocks below are optional: leave them out to start in demo mode.
 
 ### Claude Desktop
 
-Edit `claude_desktop_config.json` (Settings → Developer → Edit Config):
+**One-click install:** download `sportapi-mcp.mcpb` from the [latest release](https://github.com/SportApi-net/sportapi-mcp/releases/latest) and open it — Claude Desktop installs the extension and asks for the optional key and base URL (leave them empty for demo data). The bundle sources are in [`mcpb/`](mcpb/).
+
+Or edit `claude_desktop_config.json` (Settings → Developer → Edit Config):
 
 ```json
 {
