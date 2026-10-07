@@ -1,0 +1,97 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sportapi-mcp"
+dynamic = ["version"]
+description = "MCP server for SportAPI: Live and Prematch sports odds, scores and statistics for Claude, Cursor, VS Code and other AI assistants."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "SportAPI" }]
+keywords = [
+  "mcp",
+  "model-context-protocol",
+  "mcp-server",
+  "sportapi",
+  "sports-api",
+  "odds-api",
+  "betting-api",
+  "live-scores",
+  "sportsbook",
+  "esports",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Internet :: WWW/HTTP",
+  "Typing :: Typed",
+]
+dependencies = [
+  "mcp>=2.0,<3",
+  "sportapi>=0.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+  "respx>=0.21",
+  "ruff>=0.6",
+  "mypy>=1.10",
+  "build>=1",
+]
+
+[project.scripts]
+sportapi-mcp = "sportapi_mcp.cli:main"
+
+[project.urls]
+Homepage = "https://sportapi.net"
+Documentation = "https://sportapi.net/docs/sport-line/getting-started/quick-start.html"
+"API reference" = "https://sportapi.net/docs/sport-line/api-reference/overview.html"
+Source = "https://github.com/SportApi-net/sportapi-mcp"
+Issues = "https://github.com/SportApi-net/sportapi-mcp/issues"
+Changelog = "https://github.com/SportApi-net/sportapi-mcp/blob/main/CHANGELOG.md"
+
+[tool.hatch.version]
+path = "src/sportapi_mcp/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sportapi_mcp"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "src/sportapi_mcp",
+  "tests",
+  "README.md",
+  "CHANGELOG.md",
+  "CONTRIBUTING.md",
+  "LICENSE",
+  "server.json",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+ignore = ["RUF001", "RUF002", "RUF003"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+files = ["src/sportapi_mcp"]

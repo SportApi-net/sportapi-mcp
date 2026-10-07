@@ -1,0 +1,30 @@
+# Smithery configuration (stdio server built from the Dockerfile).
+# Every setting is optional: without a key the server answers with demo data.
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      sportapiKey:
+        type: string
+        description: SportAPI key (sent in the Package header). Leave empty for demo data.
+      sportapiBaseUrl:
+        type: string
+        description: Your personal SportAPI base URL, e.g. https://YOUR_API_DOMAIN. Leave empty for demo data.
+      sportapiLanguage:
+        type: string
+        default: en
+        description: Response language code enabled for your key.
+  commandFunction: |-
+    (config) => ({
+      command: 'sportapi-mcp',
+      args: [],
+      env: Object.fromEntries(
+        Object.entries({
+          SPORTAPI_KEY: config.sportapiKey,
+          SPORTAPI_BASE_URL: config.sportapiBaseUrl,
+          SPORTAPI_LANGUAGE: config.sportapiLanguage,
+        }).filter(([, value]) => value)
+      ),
+    })
+  exampleConfig: {}

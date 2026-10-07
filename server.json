@@ -1,0 +1,46 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.SportApi-net/sportapi-mcp",
+  "title": "SportAPI",
+  "description": "Live and Prematch sports odds, scores and statistics from SportAPI. Demo data without a key.",
+  "websiteUrl": "https://sportapi.net",
+  "repository": {
+    "url": "https://github.com/SportApi-net/sportapi-mcp",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "registryBaseUrl": "https://pypi.org",
+      "identifier": "sportapi-mcp",
+      "version": "0.1.0",
+      "runtimeHint": "uvx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "SPORTAPI_KEY",
+          "description": "SportAPI key, sent in the Package header. Leave unset for demo data.",
+          "isRequired": false,
+          "isSecret": true,
+          "format": "string"
+        },
+        {
+          "name": "SPORTAPI_BASE_URL",
+          "description": "Your personal SportAPI base URL, e.g. https://YOUR_API_DOMAIN. Leave unset for demo data.",
+          "isRequired": false,
+          "format": "string"
+        },
+        {
+          "name": "SPORTAPI_LANGUAGE",
+          "description": "Response language code enabled for your key.",
+          "isRequired": false,
+          "default": "en",
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}
